@@ -1,0 +1,339 @@
+type UserUpdateInput = 
+ record {
+   avatarUrl: opt text;
+   bioEn: opt text;
+   bioFr: opt text;
+   bioKm: opt text;
+   fullNameEn: opt text;
+   fullNameFr: opt text;
+   fullNameKm: opt text;
+   hasPaidForward: opt bool;
+   isActive: opt bool;
+   preferredLanguage: opt PreferredLanguage;
+   targetMonthlyIncomeKhr: opt nat;
+   targetMonthlyIncomeUsd: opt nat;
+ };
+type UserRole = 
+ variant {
+   champion;
+   hotel;
+   staff;
+ };
+type UserRegistrationInput = 
+ record {
+   avatarUrl: opt text;
+   bioEn: opt text;
+   bioFr: opt text;
+   bioKm: opt text;
+   fullNameEn: text;
+   fullNameFr: opt text;
+   fullNameKm: opt text;
+   phoneNumber: text;
+   preferredLanguage: PreferredLanguage;
+   referredByCode: opt text;
+   role: UserRole;
+ };
+type User = 
+ record {
+   approvedAt: opt int;
+   approvedByStaffId: opt nat;
+   avatarUrl: opt text;
+   bioEn: opt text;
+   bioFr: opt text;
+   bioKm: opt text;
+   consignmentInventoryHeld: nat;
+   createdAt: int;
+   fullNameEn: text;
+   fullNameFr: opt text;
+   fullNameKm: opt text;
+   hasPaidForward: bool;
+   id: nat;
+   isActive: bool;
+   onboardingNotesEn: opt text;
+   onboardingNotesFr: opt text;
+   onboardingNotesKm: opt text;
+   onboardingStatus: OnboardingStatus;
+   personalReferralCode: opt text;
+   phoneNumber: text;
+   physicalQrCodeId: opt text;
+   preferredLanguage: PreferredLanguage;
+   qrCodeActivatedAt: opt int;
+   referralCodeActivatedAt: opt int;
+   referredByCode: opt text;
+   referredById: opt nat;
+   role: UserRole;
+   targetMonthlyIncomeKhr: nat;
+   targetMonthlyIncomeUsd: nat;
+   updatedAt: int;
+ };
+type Translation = 
+ record {
+   createdAt: int;
+   en: text;
+   fr: text;
+   id: nat;
+   key: text;
+   km: text;
+ };
+type Result_2 = 
+ variant {
+   err: text;
+   ok: text;
+ };
+type Result_1 = 
+ variant {
+   err: text;
+   ok: nat;
+ };
+type Result = 
+ variant {
+   err: text;
+   ok;
+ };
+type ProductInput = 
+ record {
+   baseCostKhr: nat;
+   championCommissionKhr: nat;
+   championCommissionUsd: float64;
+   commissionRatePercentage: float64;
+   descriptionEn: opt text;
+   descriptionFr: opt text;
+   descriptionKm: opt text;
+   isActive: bool;
+   nameEn: text;
+   nameFr: text;
+   nameKm: text;
+   referralPriceKhr: opt nat;
+   referralPriceUsd: opt float64;
+   retailPriceKhr: nat;
+   retailPriceUsd: float64;
+   skuCode: text;
+   unitMeasurement: text;
+   unitSize: float64;
+   wholesalePriceKhr: nat;
+   wholesalePriceUsd: float64;
+ };
+type Product = 
+ record {
+   baseCostKhr: nat;
+   championCommissionKhr: nat;
+   championCommissionUsd: float64;
+   commissionRatePercentage: float64;
+   createdAt: int;
+   descriptionEn: opt text;
+   descriptionFr: opt text;
+   descriptionKm: opt text;
+   id: nat;
+   isActive: bool;
+   nameEn: text;
+   nameFr: text;
+   nameKm: text;
+   referralPriceKhr: opt nat;
+   referralPriceUsd: opt float64;
+   retailPriceKhr: nat;
+   retailPriceUsd: float64;
+   skuCode: text;
+   unitMeasurement: text;
+   unitSize: float64;
+   updatedAt: int;
+   wholesalePriceKhr: nat;
+   wholesalePriceUsd: float64;
+ };
+type PreferredLanguage = 
+ variant {
+   en;
+   fr;
+   km;
+ };
+type PayoutStatus = 
+ variant {
+   failed;
+   pending;
+   processed;
+ };
+type PayoutMethod = 
+ variant {
+   bank_transfer;
+   cash;
+   wing;
+ };
+type PayoutLedger = 
+ record {
+   championId: nat;
+   createdAt: int;
+   id: nat;
+   notesEn: opt text;
+   notesFr: opt text;
+   notesKm: opt text;
+   payoutCycleEnd: text;
+   payoutCycleStart: text;
+   payoutMethod: PayoutMethod;
+   payoutStatus: PayoutStatus;
+   processedAt: opt int;
+   processedByStaffId: opt nat;
+   totalCommissionKhr: nat;
+   totalCommissionUsd: float64;
+   totalOrdersCount: nat;
+ };
+type OrderItemInput = 
+ record {
+   championCommissionKhr: nat;
+   championCommissionUsd: float64;
+   productId: nat;
+   quantity: nat;
+   unitPriceKhr: nat;
+   unitPriceUsd: float64;
+ };
+type OrderItem = 
+ record {
+   championCommissionKhr: nat;
+   championCommissionUsd: float64;
+   id: nat;
+   orderId: nat;
+   productId: nat;
+   quantity: nat;
+   unitPriceKhr: nat;
+   unitPriceUsd: float64;
+ };
+type OrderInput = 
+ record {
+   championId: nat;
+   hotelId: nat;
+   hotelSelectedChampionMethod: ChampionSelectionMethod;
+   items: vec OrderItemInput;
+   payoutCycleEndDate: text;
+   payoutCycleStartDate: text;
+   qrCodeUsed: opt text;
+   referralCodeUsed: opt text;
+   staffProxyId: opt nat;
+ };
+type Order = 
+ record {
+   biweeklyPayoutProcessed: bool;
+   championId: nat;
+   createdAt: int;
+   hotelId: nat;
+   hotelSelectedChampionMethod: ChampionSelectionMethod;
+   id: nat;
+   khqrPaymentConfirmed: bool;
+   khqrReceiptHash: opt text;
+   orderDate: int;
+   payoutCycleEndDate: text;
+   payoutCycleStartDate: text;
+   payoutProcessedDate: opt text;
+   qrCodeUsed: opt text;
+   referralCodeUsed: opt text;
+   staffProxyId: opt nat;
+   totalAmountKhr: nat;
+   totalAmountUsd: float64;
+   updatedAt: int;
+ };
+type OnboardingStatus = 
+ variant {
+   approved;
+   pending;
+   rejected;
+ };
+type ImpactStats = 
+ record {
+   championsEmpowered: nat;
+   localValueCirculatedKhr: nat;
+   totalCommunityEarningsKhr: nat;
+ };
+type ConsignmentStatus = 
+ variant {
+   out;
+   returned;
+   sold;
+ };
+type ConsignmentInput = 
+ record {
+   championId: nat;
+   notesEn: opt text;
+   notesFr: opt text;
+   notesKm: opt text;
+   productId: nat;
+   quantity: nat;
+   staffId: nat;
+ };
+type ConsignmentCheckout = 
+ record {
+   championId: nat;
+   checkedOutAt: int;
+   id: nat;
+   notesEn: opt text;
+   notesFr: opt text;
+   notesKm: opt text;
+   productId: nat;
+   quantity: nat;
+   returnedAt: opt int;
+   staffId: nat;
+   status: ConsignmentStatus;
+ };
+type ChampionSelectionMethod = 
+ variant {
+   browsed_list;
+   qr_scan;
+   remembered;
+   staff_assigned;
+ };
+type ChampionMetrics = 
+ record {
+   bottlesSold: nat;
+   championId: nat;
+   orderCount: nat;
+   sponsorCount: nat;
+   totalEarningsKhr: nat;
+   totalEarningsUsd: float64;
+ };
+type ChampionCode = 
+ record {
+   championId: nat;
+   createdAt: int;
+   id: nat;
+   isActive: bool;
+   qrCodeId: text;
+   qrCodeImageUrl: opt text;
+   referralCode: text;
+   timesUsedForChampionReferrals: nat;
+   timesUsedForHotelOrders: nat;
+ };
+type ApproveChampionInput = 
+ record {
+   notesEn: opt text;
+   notesFr: opt text;
+   notesKm: opt text;
+   qrCodeImageUrl: opt text;
+ };
+service : {
+  addProduct: (input: ProductInput) -> (Result_1);
+  approveChampion: (userId: nat, input: ApproveChampionInput) -> (Result);
+  checkoutConsignment: (input: ConsignmentInput) -> (Result_1);
+  confirmPayment: (orderId: nat) -> (Result);
+  createOrder: (input: OrderInput) -> (Result_1);
+  generatePayoutLedger: (cycleStart: text, cycleEnd: text) -> (Result);
+  getActiveProducts: () -> (vec Product);
+  getAllChampionMetrics: () -> (vec ChampionMetrics) query;
+  getApprovedChampions: () -> (vec User);
+  getCallerPrincipal: () -> (text);
+  getChampionCodes: (championId: nat) -> (vec ChampionCode);
+  getChampionMetrics: (championId: nat) -> (ChampionMetrics) query;
+  getConsignmentByChampion: (championId: nat) -> (vec ConsignmentCheckout);
+  getImpactStats: () -> (ImpactStats);
+  getOrderItems: (orderId: nat) -> (vec OrderItem);
+  getOrdersByChampion: (championId: nat) -> (vec Order);
+  getOrdersByHotel: (hotelId: nat) -> (vec Order);
+  getPendingChampions: () -> (vec User);
+  getPendingPayouts: () -> (vec PayoutLedger);
+  getProducts: () -> (vec Product);
+  getTranslationByKey: (key: text) -> (opt Translation);
+  getTranslations: () -> (vec Translation);
+  getUserById: (id: nat) -> (opt User);
+  getUserByPhone: (phone: text) -> (opt User);
+  markPayoutProcessed: (payoutId: nat, staffId: nat) -> (Result);
+  regenerateChampionQR: (championId: nat) -> (Result_2);
+  registerUser: (input: UserRegistrationInput) -> (Result_1);
+  rejectChampion: (userId: nat, reason: text) -> (Result);
+  updateUser: (userId: nat, input: UserUpdateInput) -> (Result);
+  validateReferralCode: (code: text) -> (opt ChampionCode);
+}

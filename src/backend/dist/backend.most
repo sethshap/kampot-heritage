@@ -1,0 +1,407 @@
+// Version: 4.0.0
+type ChampionCode__253722619 =
+  {
+    championId : Nat;
+    createdAt : Int;
+    id : Nat;
+    isActive : Bool;
+    qrCodeId : Text;
+    qrCodeImageUrl : ?Text;
+    referralCode : Text;
+    timesUsedForChampionReferrals : Nat;
+    timesUsedForHotelOrders : Nat
+  };
+type ChampionCode__452906299 =
+  {
+    championId : Nat;
+    createdAt : Int;
+    id : Nat;
+    isActive : Bool;
+    qrCodeId : Text;
+    qrCodeImageUrl : ?Text;
+    referralCode : Text;
+    timesUsedForChampionReferrals : Nat;
+    timesUsedForHotelOrders : Nat
+  };
+type ChampionSelectionMethod__752020660 =
+  {#browsed_list; #qr_scan; #remembered; #staff_assigned};
+type ChampionSelectionMethod__78630093 =
+  {#browsed_list; #qr_scan; #remembered; #staff_assigned};
+type ConsignmentCheckout__527706131 =
+  {
+    championId : Nat;
+    checkedOutAt : Int;
+    id : Nat;
+    notesEn : ?Text;
+    notesFr : ?Text;
+    notesKm : ?Text;
+    productId : Nat;
+    quantity : Nat;
+    returnedAt : ?Int;
+    staffId : Nat;
+    status : ConsignmentStatus__49478736
+  };
+type ConsignmentCheckout__944808470 =
+  {
+    championId : Nat;
+    checkedOutAt : Int;
+    id : Nat;
+    notesEn : ?Text;
+    notesFr : ?Text;
+    notesKm : ?Text;
+    productId : Nat;
+    quantity : Nat;
+    returnedAt : ?Int;
+    staffId : Nat;
+    status : ConsignmentStatus__3206585
+  };
+type ConsignmentStatus__3206585 = {#out; #returned; #sold};
+type ConsignmentStatus__49478736 = {#out; #returned; #sold};
+type Data__791452850<K, V> =
+  {var count : Nat__490723111; kvs : [var ?(K, V)]};
+type Internal__8484328<K, V> =
+  {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
+type Leaf__809889148<K, V> = {data : Data__791452850<K, V>};
+type List__415060402<T> = List__790383201<T>;
+type List__790383201<T> =
+  {
+    var blockIndex : Nat__490723111;
+    var blocks : [var [var ?T]];
+    var elementIndex : Nat__490723111
+  };
+type Map__158565046<K, V> = Map__297112838<K, V>;
+type Map__297112838<K, V> =
+  {var root : Node__46230540<K, V>; var size : Nat__490723111};
+type Map__605269027<K, V> = Map__158565046<K, V>;
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type NewActor__988299198 =
+  {
+    championCodes : List__415060402<ChampionCode__452906299>;
+    checkouts : List__415060402<ConsignmentCheckout__944808470>;
+    idState :
+      {
+        var nextChampionCodeId : Nat;
+        var nextConsignmentId : Nat;
+        var nextOrderId : Nat;
+        var nextOrderItemId : Nat;
+        var nextPayoutId : Nat;
+        var nextProductId : Nat;
+        var nextTranslationId : Nat;
+        var nextUserId : Nat
+      };
+    orderItems : List__415060402<OrderItem__647509727>;
+    orders : List__415060402<Order__708397511>;
+    payouts : List__415060402<PayoutLedger__828429994>;
+    phoneIndex : Map__605269027<Text, Nat>;
+    products : List__415060402<Product__366929912>;
+    qrIndex : Map__605269027<Text, Nat>;
+    referralIndex : Map__605269027<Text, Nat>;
+    translations : List__415060402<Translation__200891938>;
+    users : List__415060402<User__884910917>
+  };
+type Node__46230540<K, V> =
+  {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
+type OldActor__826337322 = {};
+type OnboardingStatus__523113302 = {#approved; #pending; #rejected};
+type OnboardingStatus__735608191 = {#approved; #pending; #rejected};
+type OrderItem__647509727 =
+  {
+    championCommissionKhr : Nat;
+    championCommissionUsd : Float;
+    id : Nat;
+    orderId : Nat;
+    productId : Nat;
+    quantity : Nat;
+    unitPriceKhr : Nat;
+    unitPriceUsd : Float
+  };
+type OrderItem__970180480 =
+  {
+    championCommissionKhr : Nat;
+    championCommissionUsd : Float;
+    id : Nat;
+    orderId : Nat;
+    productId : Nat;
+    quantity : Nat;
+    unitPriceKhr : Nat;
+    unitPriceUsd : Float
+  };
+type Order__708397511 =
+  {
+    biweeklyPayoutProcessed : Bool;
+    championId : Nat;
+    createdAt : Int;
+    hotelId : Nat;
+    hotelSelectedChampionMethod : ChampionSelectionMethod__78630093;
+    id : Nat;
+    khqrPaymentConfirmed : Bool;
+    khqrReceiptHash : ?Text;
+    orderDate : Int;
+    payoutCycleEndDate : Text;
+    payoutCycleStartDate : Text;
+    payoutProcessedDate : ?Text;
+    qrCodeUsed : ?Text;
+    referralCodeUsed : ?Text;
+    staffProxyId : ?Nat;
+    totalAmountKhr : Nat;
+    totalAmountUsd : Float;
+    updatedAt : Int
+  };
+type Order__720360493 =
+  {
+    biweeklyPayoutProcessed : Bool;
+    championId : Nat;
+    createdAt : Int;
+    hotelId : Nat;
+    hotelSelectedChampionMethod : ChampionSelectionMethod__752020660;
+    id : Nat;
+    khqrPaymentConfirmed : Bool;
+    khqrReceiptHash : ?Text;
+    orderDate : Int;
+    payoutCycleEndDate : Text;
+    payoutCycleStartDate : Text;
+    payoutProcessedDate : ?Text;
+    qrCodeUsed : ?Text;
+    referralCodeUsed : ?Text;
+    staffProxyId : ?Nat;
+    totalAmountKhr : Nat;
+    totalAmountUsd : Float;
+    updatedAt : Int
+  };
+type PayoutLedger__267852124 =
+  {
+    championId : Nat;
+    createdAt : Int;
+    id : Nat;
+    notesEn : ?Text;
+    notesFr : ?Text;
+    notesKm : ?Text;
+    payoutCycleEnd : Text;
+    payoutCycleStart : Text;
+    payoutMethod : PayoutMethod__328825591;
+    payoutStatus : PayoutStatus__235730068;
+    processedAt : ?Int;
+    processedByStaffId : ?Nat;
+    totalCommissionKhr : Nat;
+    totalCommissionUsd : Float;
+    totalOrdersCount : Nat
+  };
+type PayoutLedger__828429994 =
+  {
+    championId : Nat;
+    createdAt : Int;
+    id : Nat;
+    notesEn : ?Text;
+    notesFr : ?Text;
+    notesKm : ?Text;
+    payoutCycleEnd : Text;
+    payoutCycleStart : Text;
+    payoutMethod : PayoutMethod__201831254;
+    payoutStatus : PayoutStatus__885247116;
+    processedAt : ?Int;
+    processedByStaffId : ?Nat;
+    totalCommissionKhr : Nat;
+    totalCommissionUsd : Float;
+    totalOrdersCount : Nat
+  };
+type PayoutMethod__201831254 = {#bank_transfer; #cash; #wing};
+type PayoutMethod__328825591 = {#bank_transfer; #cash; #wing};
+type PayoutStatus__235730068 = {#failed; #pending; #processed};
+type PayoutStatus__885247116 = {#failed; #pending; #processed};
+type PreferredLanguage__457684170 = {#en; #fr; #km};
+type PreferredLanguage__520743176 = {#en; #fr; #km};
+type Product__247116600 =
+  {
+    baseCostKhr : Nat;
+    championCommissionKhr : Nat;
+    championCommissionUsd : Float;
+    commissionRatePercentage : Float;
+    createdAt : Int;
+    descriptionEn : ?Text;
+    descriptionFr : ?Text;
+    descriptionKm : ?Text;
+    id : Nat;
+    isActive : Bool;
+    nameEn : Text;
+    nameFr : Text;
+    nameKm : Text;
+    referralPriceKhr : ?Nat;
+    referralPriceUsd : ?Float;
+    retailPriceKhr : Nat;
+    retailPriceUsd : Float;
+    skuCode : Text;
+    unitMeasurement : Text;
+    unitSize : Float;
+    updatedAt : Int;
+    wholesalePriceKhr : Nat;
+    wholesalePriceUsd : Float
+  };
+type Product__366929912 =
+  {
+    baseCostKhr : Nat;
+    championCommissionKhr : Nat;
+    championCommissionUsd : Float;
+    commissionRatePercentage : Float;
+    createdAt : Int;
+    descriptionEn : ?Text;
+    descriptionFr : ?Text;
+    descriptionKm : ?Text;
+    id : Nat;
+    isActive : Bool;
+    nameEn : Text;
+    nameFr : Text;
+    nameKm : Text;
+    referralPriceKhr : ?Nat;
+    referralPriceUsd : ?Float;
+    retailPriceKhr : Nat;
+    retailPriceUsd : Float;
+    skuCode : Text;
+    unitMeasurement : Text;
+    unitSize : Float;
+    updatedAt : Int;
+    wholesalePriceKhr : Nat;
+    wholesalePriceUsd : Float
+  };
+type Translation__200891938 =
+  {createdAt : Int; en : Text; fr : Text; id : Nat; key : Text; km : Text};
+type Translation__531006347 =
+  {createdAt : Int; en : Text; fr : Text; id : Nat; key : Text; km : Text};
+type UserRole__1064806632 = {#champion; #hotel; #staff};
+type UserRole__887406725 = {#champion; #hotel; #staff};
+type User__884910917 =
+  {
+    approvedAt : ?Int;
+    approvedByStaffId : ?Nat;
+    avatarUrl : ?Text;
+    bioEn : ?Text;
+    bioFr : ?Text;
+    bioKm : ?Text;
+    consignmentInventoryHeld : Nat;
+    createdAt : Int;
+    fullNameEn : Text;
+    fullNameFr : ?Text;
+    fullNameKm : ?Text;
+    hasPaidForward : Bool;
+    id : Nat;
+    isActive : Bool;
+    onboardingNotesEn : ?Text;
+    onboardingNotesFr : ?Text;
+    onboardingNotesKm : ?Text;
+    onboardingStatus : OnboardingStatus__735608191;
+    personalReferralCode : ?Text;
+    phoneNumber : Text;
+    physicalQrCodeId : ?Text;
+    preferredLanguage : PreferredLanguage__457684170;
+    qrCodeActivatedAt : ?Int;
+    referralCodeActivatedAt : ?Int;
+    referredByCode : ?Text;
+    referredById : ?Nat;
+    role : UserRole__1064806632;
+    targetMonthlyIncomeKhr : Nat;
+    targetMonthlyIncomeUsd : Nat;
+    updatedAt : Int
+  };
+type User__933515552 =
+  {
+    approvedAt : ?Int;
+    approvedByStaffId : ?Nat;
+    avatarUrl : ?Text;
+    bioEn : ?Text;
+    bioFr : ?Text;
+    bioKm : ?Text;
+    consignmentInventoryHeld : Nat;
+    createdAt : Int;
+    fullNameEn : Text;
+    fullNameFr : ?Text;
+    fullNameKm : ?Text;
+    hasPaidForward : Bool;
+    id : Nat;
+    isActive : Bool;
+    onboardingNotesEn : ?Text;
+    onboardingNotesFr : ?Text;
+    onboardingNotesKm : ?Text;
+    onboardingStatus : OnboardingStatus__523113302;
+    personalReferralCode : ?Text;
+    phoneNumber : Text;
+    physicalQrCodeId : ?Text;
+    preferredLanguage : PreferredLanguage__520743176;
+    qrCodeActivatedAt : ?Int;
+    referralCodeActivatedAt : ?Int;
+    referredByCode : ?Text;
+    referredById : ?Nat;
+    role : UserRole__887406725;
+    targetMonthlyIncomeKhr : Nat;
+    targetMonthlyIncomeUsd : Nat;
+    updatedAt : Int
+  };
+{
+  "20260528_000000_Init" : OldActor__826337322 -> NewActor__988299198
+}
+actor  {
+  stable championCodes :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?ChampionCode__253722619]];
+      var elementIndex : Nat__490723111
+    };
+  stable checkouts :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?ConsignmentCheckout__527706131]];
+      var elementIndex : Nat__490723111
+    };
+  stable idState :
+    {
+      var nextChampionCodeId : Nat;
+      var nextConsignmentId : Nat;
+      var nextOrderId : Nat;
+      var nextOrderItemId : Nat;
+      var nextPayoutId : Nat;
+      var nextProductId : Nat;
+      var nextTranslationId : Nat;
+      var nextUserId : Nat
+    };
+  stable orderItems :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?OrderItem__970180480]];
+      var elementIndex : Nat__490723111
+    };
+  stable orders :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Order__720360493]];
+      var elementIndex : Nat__490723111
+    };
+  stable payouts :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?PayoutLedger__267852124]];
+      var elementIndex : Nat__490723111
+    };
+  stable phoneIndex :
+    {var root : Node__46230540<Text, Nat>; var size : Nat__490723111};
+  stable products :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Product__247116600]];
+      var elementIndex : Nat__490723111
+    };
+  stable qrIndex :
+    {var root : Node__46230540<Text, Nat>; var size : Nat__490723111};
+  stable referralIndex :
+    {var root : Node__46230540<Text, Nat>; var size : Nat__490723111};
+  stable translations :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Translation__531006347]];
+      var elementIndex : Nat__490723111
+    };
+  stable users :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?User__933515552]];
+      var elementIndex : Nat__490723111
+    }
+};
